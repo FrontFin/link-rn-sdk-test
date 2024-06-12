@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -6,113 +7,35 @@
  */
 
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {View} from 'react-native';
+import {MeshLinkConnect} from './MeshLinkConnect';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+const NetworkChoiceBackground = ({
+  children,
+}: {
+  children: React.ReactNode;
+}): React.JSX.Element => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View
+      style={{
+        flex: 1,
+        width: '100%',
+        height: '100%',
+      }}>
+      {children}
     </View>
   );
-}
+};
+
+const MESH_LINK_TOKEN = 'aHR0cHM6Ly9mcm9udC13ZWItcGxhdGZvcm0tZGV2LmF6dXJld2Vic2l0ZXMubmV0L2IyYi1pZnJhbWUvYTAwZjRhNjQtYmE0MS00ZWRkLWJmZTQtMDhkYjkzNjA0OWVhL2Jyb2tlci1jb25uZWN0P2F1dGhfY29kZT1WSXRjYW9MY0w0VE56REZRX1dkOHhPX0M4bm92V2gtaDNvTm9MTlg4R3g3Z1VCdm9YUHQ0NmFKOGZzUHRRYjBPRnFqRG9PY0lqSjVYei1CRThETTBXZyZ0cmFuc2Zlcl90b2tlbj16Nm93NndKYzhFM0ZmV2lCeFQ5T3d3JTNkJTNkLno5RVhRcEFZMjhjUlVHT25GWXI2JTJmZGpXV1BxWnJ0Qjl5aDRjUE4yWUhBb2U4YmVXRlZvJTJmQWNqNHpkdXl4a2IyUzh0JTJiZFp3bUdkMGhXUHFyMTdMM1pMbFNsNGc3b0VvODBCUk1HOGgyV2FGZ3k4V3o2WEh1JTJmN0tZSEVqMTVqVGVLVXBnNjNWOGdYdDUlMmZjU1E4VHlQMnclM2QlM2Q=';
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NetworkChoiceBackground>
+      <MeshLinkConnect meshLinkToken={MESH_LINK_TOKEN} />
+    </NetworkChoiceBackground>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
