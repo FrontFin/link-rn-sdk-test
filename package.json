@@ -85,7 +85,7 @@
     "svgo": "^2.8.0",
     "uuid": "^9.0.1",
     "victory-native": "legacy",
-    "ws": "^8.16.0",
+    "ws": "^8.17.1",
     "yup": "^0.32.11"
   },
   "devDependencies": {
